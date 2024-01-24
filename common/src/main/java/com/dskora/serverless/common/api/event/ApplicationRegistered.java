@@ -1,6 +1,6 @@
 package com.dskora.serverless.common.api.event;
 
-public class ApplicationRegistered {
+public class ApplicationRegistered implements Event {
     private Long id;
 
     private String firstname;
