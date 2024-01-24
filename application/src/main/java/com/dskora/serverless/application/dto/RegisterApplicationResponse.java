@@ -1,4 +1,4 @@
-package com.dskora.application.dto;
+package com.dskora.serverless.application.dto;
 
 public class RegisterApplicationResponse {
     private Long id;

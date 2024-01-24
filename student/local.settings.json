@@ -2,6 +2,6 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "java",
-    "MAIN_CLASS": "com.dskora.serverless.application.SpringApplication"
+    "MAIN_CLASS": "com.dskora.serverless.student.SpringApplication"
   }
 }

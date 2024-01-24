@@ -1,7 +1,7 @@
-package com.dskora.application;
+package com.dskora.serverless.application;
 
-import com.dskora.application.dto.RegisterApplicationRequest;
-import com.dskora.application.dto.RegisterApplicationResponse;
+import com.dskora.serverless.application.dto.RegisterApplicationRequest;
+import com.dskora.serverless.application.dto.RegisterApplicationResponse;
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;

@@ -8,13 +8,15 @@
         <version>3.2.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.dskora</groupId>
+    <groupId>com.dskora.serverless</groupId>
     <artifactId>serverless-student-application</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
 
     <properties>
         <java.version>17</java.version>
+        <spring-boot-thin-layout.version>1.0.31.RELEASE</spring-boot-thin-layout.version>
+
         <spring-cloud-azure.version>5.7.0</spring-cloud-azure.version>
         <spring-cloud.version>2022.0.4</spring-cloud.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -24,6 +26,8 @@
 
     <modules>
         <module>application</module>
+        <module>student</module>
+        <module>common</module>
     </modules>
 
     <dependencies>

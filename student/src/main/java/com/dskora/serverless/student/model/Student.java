@@ -1,9 +1,9 @@
-package com.dskora.application.model;
+package com.dskora.serverless.student.model;
 
 import jakarta.persistence.*;
 
 @Entity
-public class Application {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,18 +14,18 @@ public class Application {
 
     private Long courseId;
 
-    protected Application() {}
+    protected Student() {}
 
-    private Application(String firstname, String surname, Long courseId) {
+    private Student(String firstname, String surname, Long courseId) {
         this.firstname = firstname;
         this.surname = surname;
         this.courseId = courseId;
     }
 
-    public static Application register(String firstname, String surname, Long courseId) {
-        Application application = new Application(firstname, surname, courseId);
+    public static Student register(String firstname, String surname, Long courseId) {
+        Student student = new Student(firstname, surname, courseId);
 
-        return application;
+        return student;
     }
 
     public Long getId() {

@@ -1,13 +1,16 @@
-package com.dskora.application.dto;
+package com.dskora.serverless.common.api.event;
 
-public class RegisterApplicationRequest {
+public class ApplicationRegistered {
+    private Long id;
+
     private String firstname;
 
     private String surname;
 
     private Long courseId;
 
-    public RegisterApplicationRequest(String firstname, String surname, Long courseId) {
+    public ApplicationRegistered(Long id, String firstname, String surname, Long courseId) {
+        this.id = id;
         this.firstname = firstname;
         this.surname = surname;
         this.courseId = courseId;
@@ -35,5 +38,9 @@ public class RegisterApplicationRequest {
 
     public Long getCourseId() {
         return courseId;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

@@ -8,41 +8,43 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>application</artifactId>
+    <artifactId>student</artifactId>
     <version>1.0</version>
 
     <properties>
-        <start-class>com.dskora.serverless.application.SpringApplication</start-class>
+        <start-class>com.dskora.serverless.student.SpringApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
             <groupId>com.dskora.serverless</groupId>
             <artifactId>common</artifactId>
             <version>1.0</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.boot.experimental</groupId>
+                        <artifactId>spring-boot-thin-layout</artifactId>
+                        <version>1.0.31.RELEASE</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>com.microsoft.azure</groupId>
                 <artifactId>azure-functions-maven-plugin</artifactId>
                 <version>1.30.0</version>
                 <configuration>
-                    <appName>application-function</appName>
+                    <appName>student-function</appName>
                     <resourceGroup>spring-cloud-serverless</resourceGroup>
                     <region>ukwest</region>
                     <appServicePlanName>EastUSLinuxDynamicPlan</appServicePlanName>
                     <hostJson>${project.basedir}/src/main/resources/host.json</hostJson>
-                    <localSettingsJson>${project.basedir}/local.settings.json</localSettingsJson>
                     <runtime>
                         <os>linux</os>
                         <javaVersion>17</javaVersion>
@@ -63,7 +65,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
