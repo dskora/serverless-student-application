@@ -19,7 +19,6 @@
             <groupId>com.dskora.serverless</groupId>
             <artifactId>common</artifactId>
             <version>1.0</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

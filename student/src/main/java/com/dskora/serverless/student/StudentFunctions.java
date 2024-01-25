@@ -1,5 +1,6 @@
 package com.dskora.serverless.student;
 
+import com.dskora.serverless.common.api.event.ApplicationApproved;
 import com.dskora.serverless.common.api.event.ApplicationRegistered;
 import com.dskora.serverless.student.repository.StudentRepository;
 import com.dskora.serverless.student.dto.RegisterStudentResponse;
@@ -22,7 +23,7 @@ public class StudentFunctions {
     }
     
     @Bean
-    public Function<ApplicationRegistered, RegisterStudentResponse> registerStudent() {
+    public Function<ApplicationApproved, RegisterStudentResponse> registerStudent() {
         return event -> {
             Student student = Student.register(event.getFirstname(), event.getSurname(), event.getCourseId());
 

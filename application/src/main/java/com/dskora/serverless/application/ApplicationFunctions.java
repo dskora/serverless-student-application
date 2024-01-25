@@ -6,7 +6,8 @@ import com.dskora.serverless.application.repository.ApplicationRepository;
 import com.dskora.serverless.common.api.event.ApplicationApproved;
 import com.dskora.serverless.common.api.event.ApplicationRegistered;
 import com.dskora.serverless.common.api.event.ApplicationRejected;
-import com.dskora.serverless.common.api.event.Event;
+import com.dskora.serverless.common.api.event.DomainEvent;
+import com.dskora.serverless.common.service.EventStreamBridge;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.context.annotation.Bean;
@@ -16,12 +17,12 @@ import java.util.function.Function;
 
 @Service
 public class ApplicationFunctions {
-    private StreamBridge streamBridge;
+    private EventStreamBridge eventStreamBridge;
 
     private ApplicationRepository repository;
 
-    public ApplicationFunctions(StreamBridge streamBridge, ApplicationRepository repository) {
-        this.streamBridge = streamBridge;
+    public ApplicationFunctions(EventStreamBridge eventStreamBridge, ApplicationRepository repository) {
+        this.eventStreamBridge = eventStreamBridge;
         this.repository = repository;
     }
     
@@ -31,7 +32,7 @@ public class ApplicationFunctions {
             Application application = Application.register(request.getFirstname(), request.getSurname(), request.getCourseId());
 
             repository.save(application);
-            streamBridge.send("applications-out-0", new ApplicationRegistered(application.getId(), request.getFirstname(), request.getSurname(), request.getCourseId()));
+            eventStreamBridge.send("events-out-0", new ApplicationRegistered(application.getId(), request.getFirstname(), request.getSurname(), request.getCourseId()));
 
             return new RegisterApplicationResponse(application.getId());
         };
@@ -43,11 +44,11 @@ public class ApplicationFunctions {
             Application application = repository.findById(request.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Application not found" + request.getId()));
 
-            Event event = null;
+            DomainEvent event = null;
             switch (request.getStatus()) {
                 case APPROVED -> {
                     application.approve();
-                    event = new ApplicationApproved(application.getId());
+                    event = new ApplicationApproved(application.getId(), application.getFirstname(), application.getSurname(), application.getCourseId());
                 }
                 case REJECTED -> {
                     application.reject();
@@ -57,7 +58,7 @@ public class ApplicationFunctions {
 
             if (event != null) {
                 repository.save(application);
-                streamBridge.send("applications-out-0", event);
+                eventStreamBridge.send("events-out-0", event);
             }
 
             return new UpdateApplicationStatusResponse(application.getId());

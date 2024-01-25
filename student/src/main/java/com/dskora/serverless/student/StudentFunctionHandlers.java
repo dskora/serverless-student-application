@@ -1,5 +1,6 @@
 package com.dskora.serverless.student;
 
+import com.dskora.serverless.common.api.event.ApplicationApproved;
 import com.dskora.serverless.common.api.event.ApplicationRegistered;
 import com.dskora.serverless.student.dto.RegisterStudentResponse;
 import com.microsoft.azure.functions.*;
@@ -21,11 +22,11 @@ public class StudentFunctionHandlers {
             name = "applicationRegisteredTrigger",
             connection = "EVENT_HUBS_CONNECTION_STRING_INCOME",
             cardinality = Cardinality.ONE)
-        ApplicationRegistered event,
+        ApplicationApproved event,
         ExecutionContext context) {
 
         System.out.println(event.getId());
-        Function<ApplicationRegistered, RegisterStudentResponse> function = functionCatalog.lookup("registerStudent");
+        Function<ApplicationApproved, RegisterStudentResponse> function = functionCatalog.lookup("registerStudent");
 
         return function.apply(event);
     }

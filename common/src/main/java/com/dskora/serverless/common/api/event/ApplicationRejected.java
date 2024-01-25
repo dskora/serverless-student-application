@@ -1,6 +1,6 @@
 package com.dskora.serverless.common.api.event;
 
-public class ApplicationRejected implements Event {
+public class ApplicationRejected implements DomainEvent {
     private Long id;
 
     public ApplicationRejected(Long id) {
