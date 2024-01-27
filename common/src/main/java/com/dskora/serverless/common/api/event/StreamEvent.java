@@ -1,31 +1,20 @@
 package com.dskora.serverless.common.api.event;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class StreamEvent {
     private Long id;
 
     private String type;
 
-    private String payload;
+    private DomainEvent payload;
 
-    protected StreamEvent(Long id, String type, String payload) {
+    protected StreamEvent(Long id, String type, DomainEvent payload) {
         this.id = id;
         this.type = type;
         this.payload = payload;
     }
 
     public static StreamEvent create(DomainEvent event) {
-        ObjectMapper mapper = new ObjectMapper();
-        String json = "";
-        try {
-            json = mapper.writeValueAsString(event);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
-        return new StreamEvent(event.getId(), event.getClass().getSimpleName(), json);
+        return new StreamEvent(event.getId(), event.getClass().getSimpleName(), event);
     }
 
     public Long getId() {
@@ -36,7 +25,7 @@ public class StreamEvent {
         return type;
     }
 
-    public String getPayload() {
+    public DomainEvent getPayload() {
         return payload;
     }
 }

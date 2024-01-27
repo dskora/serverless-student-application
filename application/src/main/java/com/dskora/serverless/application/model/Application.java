@@ -44,8 +44,6 @@ public class Application {
         return id;
     }
 
-
-
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }

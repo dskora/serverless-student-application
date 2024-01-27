@@ -5,6 +5,13 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Terraform files
+.terraform
+terraform.tfstate
+terraform.tfvars
+terraform.tfstate.backup
+*.tfstate*
+
 ### STS ###
 .apt_generated
 .classpath

@@ -9,7 +9,6 @@ import com.dskora.serverless.common.api.event.ApplicationRejected;
 import com.dskora.serverless.common.api.event.DomainEvent;
 import com.dskora.serverless.common.service.EventStreamBridge;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 

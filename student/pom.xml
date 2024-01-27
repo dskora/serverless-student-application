@@ -41,7 +41,7 @@
                 <version>1.30.0</version>
                 <configuration>
                     <appName>student-function</appName>
-                    <resourceGroup>spring-cloud-serverless</resourceGroup>
+                    <resourceGroup>student-application-demo</resourceGroup>
                     <region>ukwest</region>
                     <appServicePlanName>EastUSLinuxDynamicPlan</appServicePlanName>
                     <hostJson>${project.basedir}/src/main/resources/host.json</hostJson>

@@ -1,11 +1,6 @@
-package com.dskora.serverless.student.model;
+package com.dskora.serverless.student.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class StudentResponse {
     private Long id;
 
     private String firstname;
@@ -14,24 +9,22 @@ public class Student {
 
     private Long courseId;
 
-    protected Student() {}
+    public StudentResponse() {}
 
-    private Student(String firstname, String surname, Long courseId) {
+    public StudentResponse(Long id, String firstname, String surname, Long courseId) {
+        this.id = id;
         this.firstname = firstname;
         this.surname = surname;
         this.courseId = courseId;
     }
 
-    public static Student register(String firstname, String surname, Long courseId) {
-        Student student = new Student(firstname, surname, courseId);
-
-        return student;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
         return id;
     }
-
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;

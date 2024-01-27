@@ -3,7 +3,6 @@ package com.dskora.serverless.application;
 import com.dskora.serverless.application.dto.*;
 import com.dskora.serverless.application.vo.ApplicationStatus;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.azure.functions.*;
