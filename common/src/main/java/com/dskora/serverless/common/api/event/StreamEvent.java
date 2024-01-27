@@ -31,4 +31,12 @@ public class StreamEvent {
     public Long getId() {
         return id;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getPayload() {
+        return payload;
+    }
 }
