@@ -1,4 +1,3 @@
-README.md
 target/
 .azure/*
 !.mvn/wrapper/maven-wrapper.jar
